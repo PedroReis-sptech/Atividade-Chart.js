@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Sensores</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .chart-box {
+            width: 45%;
+            min-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px #0000000a;
+            margin-bottom: 20px;
+        }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+
+    <h2>Dashboard de Monitoramento</h2>
+
+    <div class="container">
+        <div class="chart-box">
+            <canvas id="Glinha"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <canvas id="Gbarra"></canvas>
+        </div>
+    </div>
+
+</body>
+</html>
+
+    <script>
+        // Gráfico de Linhas
+        let labelsLinha = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+        let dadosLinha = {
+            labels: labelsLinha,
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: [30, 29, 28, 25, 22, 23],
+                    borderColor: '#ff6384',
+                    backgroundColor: '#f7476d',
+                },
+                {
+                    label: 'Umidade',
+                    data: [80, 82, 80, 85, 80, 83],
+                    borderColor: '#36a2eb',
+                    backgroundColor: '#1389d8',
+                }
+            ]
+        };
+
+
+        new Chart(document.getElementById('Glinha'), {
+            type: 'line',
+            data: dadosLinha, 
+            options: {
+                responsive: true,
+            }
+        });
+
+        // Gráfico de Barras
+        let labelsBarra = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'];
+        let dadosBarra = {
+            labels: labelsBarra,
+            datasets: [
+                {
+                    label: 'Temperatura Média',
+                    data: [22, 24, 27, 23, 20, 18],
+                    backgroundColor: '#ff6384',
+                    borderColor: '#f7476d',
+                },
+                {
+                    label: 'Umidade Média',
+                    data: [90, 89, 93, 87, 88, 82],
+                    backgroundColor: '#36a2eb',
+                    borderColor: '#1389d8',
+                }
+            ]
+        };
+
+        new Chart(document.getElementById('Gbarra'), {
+            type: 'bar',
+            data: dadosBarra,
+            options: {
+                borderWidth: 3,
+                responsive: true,
+            }
+        });
+    </script>
